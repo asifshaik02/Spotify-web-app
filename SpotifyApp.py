@@ -6,6 +6,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+redirect_url = 'https://spotifywebapp0.herokuapp.com/callback'
+
 # helper functions
 def mstosec(t):
     sec = t // 1000
@@ -45,7 +47,7 @@ class SpotifyUserAuth:
             'client_id': self.client_id,
             'response_type': 'code',
             "scope": "user-read-private user-read-email user-follow-read user-follow-modify playlist-read-private playlist-read-collaborative user-top-read user-read-recently-played",
-            'redirect_uri': 'https://spotifywebapp0.herokuapp.com/callback'
+            'redirect_uri': redirect_url
         }
 
     def get_auth_headers(self):
@@ -72,7 +74,7 @@ class SpotifyClientAuth:
     refresh_token = None
 
     auth_code = None
-    redirect_uri = 'https://spotifywebapp0.herokuapp.com/callback'
+    redirect_uri = redirect_url
 
     client_id = os.getenv('CLIENT_ID')
     client_secret = os.getenv('CLIENT_SECRECT')
@@ -193,7 +195,11 @@ class CurrentUser:
 
         self.user_name = data['display_name']
         self.user_id = data['id']
-        self.user_img = data['images'][0]['url']
+        try:
+            self.user_img = data['images'][0]['url']
+        except:
+            self.user_img = None
+
         self.open_in_spotify = data['external_urls']['spotify']
 
         self.followers_count = data['followers']['total']

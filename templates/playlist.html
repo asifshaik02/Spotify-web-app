@@ -1,12 +1,7 @@
 {% extends 'base.html' %}
 
 {% block style %}
-    <script>
-        document.addEventListener("load", function (event) {
-            ele = document.querySelector('#list')
-            ele.parentNode.removeChild(ele);
-        })
-    </script>
+    
     <style>
         .content {
             display: flex;
@@ -96,9 +91,13 @@
                         </div>
                     </div>
                 </li>
-            {% endfor %}
-            
+            {% endfor %}  
         </ul>
     </section>
-
+    <!-- <script>
+        document.addEventListener("load", function (event) {
+            ele = document.querySelector('#list')
+            ele.parentNode.removeChild(ele);
+        })
+    </script> -->
 {% endblock content %}
