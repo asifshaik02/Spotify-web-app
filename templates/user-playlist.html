@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block style %}
+    <style>
+        .content h1 {
+            margin-bottom: 24px;
+        }
+    
+        .content ul {
+            display: flex;
+            flex-wrap: wrap;
+        }
+    
+        .content ul li {
+            padding-bottom: 3em;
+            padding-right: 5.77em;
+        }
+    
+        .content ul li:nth-of-type(3n+3) {
+            padding-right: 0em;
+        }
+    
+        .thumbnail {
+            width: 320px;
+            height: 350px;
+        }
+    
+        .thumbnail img {
+            width: 280px;
+            height: 280px
+        }
+    
+        @media (max-width:767px) {
+    
+            .content ul li {
+                padding-right: 2em;
+                padding-bottom: 2em;
+            }
+    
+            .content ul li:nth-of-type(3n) {
+                padding-right: 2em;
+            }
+    
+            .content ul li:nth-of-type(2n+2) {
+                padding-right: 0em;
+            }
+    
+            .thumbnail {
+                width: 150px;
+                height: 170px;
+            }
+    
+            .thumbnail img {
+                width: 120px;
+                height: 120px
+            }
+        }
+    </style>
+{% endblock style %}
+
+{% block content %}
+    <h1>Your Playlists</h1>
+    <ul class="playlist">
+        {% for i in p %}
+            <li>
+                <a href="/playlist/{{i['id']}}" class="thumbnail">
+                    <img src="{{i['img']}}" alt="{{i['name']}}">
+                    <p>{{i['name']}}</p>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock content %}

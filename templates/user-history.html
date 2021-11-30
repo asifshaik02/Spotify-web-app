@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block style %}
+    <style>
+        .content h1 {
+            margin-bottom: 30px;
+        }
+    
+        ul li {
+            padding: 1rem 0;
+        }
+    
+        @media(max-width:767px) {
+            .content h1 {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+{% endblock style %}
+
+{% block content %}
+    <h1>Recently Played</h1>
+    <ul>
+        {% for i in h %}
+            <li>
+                <div class="track">
+                    <a href="/track/{{i['id']}}"><img src="{{i['img']}}"></a>
+                    <div class="track-details">
+                        <div class="track-data">
+                            <a href="/track/{{i['id']}}">
+                                <h2>{{i['name']}}</h2>
+                            </a>
+                            <h3>{{i['artist']}} &#8226; {{i['album_name']}}</h3>
+                        </div>
+                        <h3>{{i['time']}}</h3>
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock content %}

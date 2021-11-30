@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block style %}
+    <style>
+        .list-section {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 2rem;
+        }
+    
+    
+        .list-section h2 {
+            margin-bottom: 10px;
+        }
+    
+        .list-section:first-of-type h2 {
+            margin-bottom: 24px;
+        }
+    
+        .list-section h3 {
+            color: var(--txt-secondary);
+            margin-bottom: 24px;
+            font-weight: 400;
+        }
+    
+        .list ul {
+            list-style: none;
+            display: flex;
+            padding-bottom: 10px;
+            overflow-x: scroll;
+        }
+    
+        .list ul li {
+            margin: 0 1.7rem;
+        }
+    
+        .list ul li:nth-of-type(1) {
+            margin-left: 0;
+        }
+    
+        .list ul li:nth-last-of-type(1) {
+            margin-right: 0;
+        }
+    
+        @media(max-width:767px) {
+            .list ul li {
+                margin: 0 0.5rem;
+            }
+    
+        }
+    </style>
+{% endblock style %}
+
+{% block content %}
+    <h1>Explore</h1>
+    <section class="list-section">
+        <h2>New Release</h2>
+        <section class="list">
+            <ul>
+                {% for i in h.new_release %}
+                    <li>
+                        <a href="{{i['link']}}" class="thumbnail" target="_blank">
+                            <img src="{{i['img']}}" alt="{{i['name']}}">
+                            <p>{{i['name']}}</p>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+    </section>
+    <section class="list-section">
+        <h2>Featured Playlists</h2>
+        <h3>{{h.f_msg}}</h3>
+        <section class="list">
+            <ul>
+                {% for i in h.featured_Playlist %}
+                <li>
+                    <a href="/playlist/{{i['id']}}" class="thumbnail">
+                        <img src="{{i['img']}}" alt="track-img">
+                        <p>{{i['name']}}</p>
+                    </a>
+                </li>
+                {% endfor %}
+                
+            </ul>
+        </section>
+    </section>
+{% endblock content %}

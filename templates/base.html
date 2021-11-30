@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Web App</title>
+    <link rel="shortcut icon" href="../static/src/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../static/css/base.css">
+    {% block style %}
+        
+    {% endblock style %}
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <a href="#">
+                <img src="../static/src/Spotify_Icon.png" alt="logo">
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/home"><img src="../static/src/svg/home.svg" alt="home"></a></li>
+                <li><a href="/search"><img src="../static/src/svg/search.svg" alt="search"></a></li>
+                <li><a href="/user-playlist"><img src="../static/src/svg/playlist.svg" alt="playlist"></a></li>
+                <li><a href="/user-history"><img src="../static/src/svg/history.svg" alt="history"></a></li>
+                <li><a href="/user-profile"><img src="../static/src/svg/profile.svg" alt="profile"></a></li>
+            </ul>
+        </nav>
+        <div class="git">
+            <a href="#">
+                <img src="../static/src/svg/github.svg" alt="github">
+            </a>
+        </div>
+    </header>
+
+    <div class="content">
+        {% block content %}
+            
+        {% endblock content %}
+    </div>
+    <script src="../static/app.js"></script>
+    <script>
+        const currLoc = location.href;
+        const menuItem = document.querySelectorAll('nav ul li');
+        const menuLen = menuItem.length;
+        for (let i = 0; i < menuLen; i++) {
+            if (menuItem[i].querySelector('a').href === currLoc) {
+                menuItem[i].className = 'active'
+            }
+            
+        } 
+    </script>
+</body>
+
+</html>

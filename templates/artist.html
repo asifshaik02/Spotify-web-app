@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block style %}
+    <style>
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%
+        }
+    
+        .artist-data {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1em;
+        }
+    
+        .content img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            margin-bottom:1em;
+        }
+    
+        .artist-meta {
+            padding: 1.5em 1em;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    
+        .artist-meta span {
+            color: var(--txt-secondary);
+            margin-bottom: 15px;
+        }
+    
+        @media(max-width:767px) {
+            .content img {
+                width: 250px;
+                height: 250px;
+            }
+        }
+    </style>
+{% endblock style %}
+
+{% block content %}
+    <img src="{{a.artist_img}}" alt="{{a.artist_name}}">
+    <h1>{{a.artist_name}}</h1>
+    <div class="artist-data">
+        <div class="artist-meta">
+            <span>{{a.followers}}</span>
+            <h2>Followers</h2>
+        </div>
+        <div class="artist-meta">
+            <span>{{a.popularity}}</span>
+            <h2>Popularity</h2>
+        </div>
+    </div>
+{% endblock content %}

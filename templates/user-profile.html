@@ -1,0 +1,206 @@
+{% extends 'base.html' %}
+{% block style %}
+    <style>
+        .user {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    
+        .user img {
+            margin-bottom: 24px;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+        }
+    
+        .username:hover {
+            text-decoration: none !important;
+        }
+    
+        .username h1:hover {
+            color: var(--txt-secondary);
+        }
+    
+        .user-data {
+            display: flex;
+            margin: 0.7em 0;
+        }
+    
+        .user-stats {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 1em;
+        }
+    
+        .user-stats h2 {
+            color: var(--txt-secondary);
+            font-weight: 700;
+            margin-bottom: 7px;
+        }
+    
+        .user-stats h3 {
+            font-size: 15px;
+            color: var(--inactive-txt);
+        }
+    
+        .btn {
+            margin-top: 0.9em;
+        }
+    
+        .user-top {
+            margin-top: 1.8em;
+            padding: 1em;
+            display: flex;
+            justify-content: flex-start;
+        }
+    
+        .top-list {
+            padding: 0 1.5em;
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+        }
+    
+        .top-list h2 {
+            font-size: 24px;
+            font-weight: 700;
+        }
+    
+        .list {
+            display: flex;
+            flex-direction: column;
+        }
+    
+        .artist-details {
+            display: flex;
+            align-items: center;
+        }
+    
+        .artist-details img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 2em;
+            /* margin: 1em;*/
+        }
+    
+        .artist-details h3 {
+            font-weight: 400;
+        }
+    
+        ul li {
+            padding: 1rem 0;
+        }
+    
+        .track img {
+            width: 50px;
+            height: 50px;
+        }
+    
+        .track-data h3 {
+            font-weight: 400;
+            margin-bottom: 7px;
+            color: var(--txt-primary);
+        }
+    
+        .track p {
+            color: var(--inactive-txt);
+    
+        }
+    
+        .track-data p {
+            width: 350px;
+            height: 20px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    
+    
+    
+        @media (max-width:767px) {
+            .btn {
+                padding: 0.5em 1.5em;
+            }
+    
+            .user-top {
+                flex-direction: column;
+                padding: 0;
+            }
+    
+            .top-list {
+                width: 100%;
+                padding: 1.5em 0;
+            }
+    
+            .track-data p {
+                width: 200px;
+            }
+        }
+    </style>
+{% endblock style %}
+
+{% block content %}
+    <section class="user">
+        <img src="{{u['user_img']}}" alt="{{u['user_name']}}">
+        <a href="{{u['open_in_spotify']}}" class="username" target="_blank">
+            <h1>{{u['user_name']}}</h1>
+        </a>
+        <div class="user-data">
+            <div class="user-stats">
+                <h2>{{u['following_count']}}</h2>
+                <h3>Following</h3>
+            </div>
+            <div class="user-stats">
+                <h2>{{u['followers_count']}}</h2>
+                <h3>Followers</h3>
+            </div>
+            <div class="user-stats">
+                <h2>{{u['playlist_count']}}</h2>
+                <h3>Playlist</h3>
+            </div>
+        </div>
+        <a href="/logout" class="btn">Log Out</a>
+    </section>
+    
+    <section class="user-top">
+        <div class="top-list">
+            <h2>Top Artists of All Time</h2>
+            <ul class="list">
+                {% for i in u['top_artists_list'] %}
+                    <li class="artist-details">
+                        <a href="/artist/{{i['id']}}">
+                            <img src="{{i['img']}}" alt="{{i['name']}}">
+                        </a>
+                        <a href="/artist/{{i['id']}}">
+                            <h3>{{i['name']}}</h3>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="top-list">
+            <h2>Top Tracks of All Time</h2>
+            <ul class="list">
+                {% for j in u['top_tracks_list'] %}
+                <li>
+                    <div class="track">
+                        <a href="/track/{{j['id']}}"><img src="{{j['img']}}" alt="{{j['name']}}"></a>
+                        <div class="track-details">
+                            <div class="track-data">
+                                <a href="/track/{{j['id']}}">
+                                    <h3>{{j['name']}}</h3>
+                                </a>
+                                <p>{{j['artists']}} &#8226; {{j['album_name']}}</p>
+                            </div>
+                            <p>{{j['time']}}</p>
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
+{% endblock content %}

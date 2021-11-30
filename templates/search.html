@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block style %}
+    <style>
+        form {
+            position: relative;
+            margin: 30px 0;
+            display: flex;
+            align-items: center;
+        }
+    
+        input[type="search"] {
+            color: black;
+            width: 100%;
+            height: 50px;
+            outline: none;
+            border: none;
+            border-radius: 46.5px;
+            padding: 0 3em;
+        }
+    
+        input[type="search"]::placeholder {
+            letter-spacing: 5px;
+    
+        }
+    
+        form a {
+            width: 0;
+            position: relative;
+            right: 3.7%;
+        }
+    
+        ul li {
+            padding: 1rem 0;
+        }
+    
+    
+        @media(max-width:767px) {
+            form a {
+                right: 11.5%;
+            }
+        }
+    </style>
+{% endblock style %}
+
+{% block content %}
+    <h1>Search</h1>
+    <form action="/search">
+        <input type="search" name="q" id="searchBox" placeholder="Type something....">
+        <a href="#"><img src="../static/src/svg/search-black.svg" alt="" width="20" height="20"></a>
+    </form>
+    <ul>
+        
+        {% for i in s.result %}
+            <li>
+                <div class="track">
+                    <a href="/track/{{i['id']}}"><img src="{{i['img']}}" alt=""></a>
+                    <div class="track-details">
+                        <div class="track-data">
+                            <a href="/track/{{i['id']}}">
+                                <h2>{{i['name']}}</h2>
+                            </a>
+                            <h3>{{i['artists']}} &#8226; {{i['album']}}</h3>
+                        </div>
+                        <h3>{{i['time']}}</h3>
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+        
+    </ul>
+{% endblock content %}

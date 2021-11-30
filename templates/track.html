@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block style %}
+    <style>
+        .content {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+    
+        .content img {
+            margin-bottom: 1.7em;
+            width: 300px;
+            height: 300px;
+        }
+    
+        .content h2,
+        h3 {
+            margin-bottom: 0.2em;
+            color: var(--inactive-txt);
+        }
+    
+        .btn {
+            margin-top: 1em;
+        }
+    
+        @media(max-width:767px) {
+            .content {
+                justify-content: center;
+                height: 100%;
+            }
+    
+            .content img {
+                width: 250px;
+                height: 250px;
+            }
+        }
+    </style>
+{% endblock style %}
+
+{% block content %}
+    <img src="{{t.track_img}}" alt="{{t.track_name}}" width="300" height="300">
+    <h1>{{t.track_name}}</h1>
+    <h2>{{t.artists}}</h2>
+    <h3>{{t.album_name}}</h3>
+    <a href="{{t.spotify_link}}" class="btn">Play on Spotify</a>
+{% endblock content %}

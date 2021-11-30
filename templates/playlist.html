@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block style %}
+    <script>
+        document.addEventListener("load", function (event) {
+            ele = document.querySelector('#list')
+            ele.parentNode.removeChild(ele);
+        })
+    </script>
+    <style>
+        .content {
+            display: flex;
+            justify-content: space-between;
+        }
+    
+        .playlist-data {
+            width: 30%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .playlist-data img{
+            width:280px;
+            height:280px;
+        }
+    
+        .playlist-data h2 {
+            color: var(--inactive-txt);
+            font-size: 17px;
+            margin-bottom: 0.7em;
+        }
+    
+        .playlist-data p {
+            text-align: center;
+        }
+    
+        .playlist-data h3 {
+            margin-bottom: 0.8em;
+        }
+    
+        .playlist-tracks {
+            width: 70%;
+            padding-left: 2.5em;
+        }
+    
+        .playlist-tracks ul li {
+            padding: 0.7em;
+        }
+    
+        .playlist-tracks ul li:first-of-type {
+            padding-top: 0;
+        }
+    
+    
+        @media(max-width:767px) {
+            .content {
+                flex-direction: column;
+            }
+    
+            .playlist-data {
+                width: 100%;
+            }
+    
+            .playlist-tracks {
+                width: 100%;
+                padding: 0;
+                padding-top: 2.5em;
+            }
+        }
+    </style>
+{% endblock style %}
+
+{% block content %}
+    <section class="playlist-data">
+        <img src="{{p.playlist_img}}" alt="playlist">
+        <h1>{{p.playlist_name}}</h1>
+        <h2>{{p.playlist_author}}</h2>
+        <h3>{{p.tracks_count}} tracks</h3>
+        <p>{{p.playlist_desc}}</p>
+    </section>
+    <section class="playlist-tracks">
+        <ul id="list">
+            {% for i in p.tracks %}
+                <li>
+                    <div class="track">
+                        <a href="/track/{{i['id']}}"><img src="{{i['img']}}" alt="{{i['name']}}"></a>
+                        <div class="track-details">
+                            <div class="track-data">
+                                <a href="/track/{{i['id']}}">
+                                    <h2>{{i['name']}}</h2>
+                                </a>
+                                <h3>{{i['artists']}} &#8226; {{i['album_name']}}</h3>
+                            </div>
+                            <h3>{{i['time']}}</h3>
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+            
+        </ul>
+    </section>
+
+{% endblock content %}
