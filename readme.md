@@ -1,6 +1,6 @@
 # The movie database
 
-using [Spotify](https://www.spotify.com/)'s api made this movie database project.  
+using [Spotify](https://www.spotify.com/)'s api made this spotify web app project.  
 
 [Live demo](https://spotifywebapp0.herokuapp.com/)
 
@@ -16,10 +16,10 @@ using [Spotify](https://www.spotify.com/)'s api made this movie database project
 
 `virtualenv env`
 
-for linux:
+for linux:  
 `source env/bin/activate`
 
-for windows:
+for windows:  
 `\env\Scripts\activate.bat`
 
 **Install requirements:**
@@ -29,8 +29,8 @@ for windows:
 **Api key:**
 
 create an account in [spotify](https://www.spotify.com/) and get an API key.
+create a file named `.env` in that file enter:  
 
-create a file named `.env` in that file enter:
 `CLIENT_ID = <your_client_id>`  
 `CLIENT_SECRECT = <your_client_secret>`
 
