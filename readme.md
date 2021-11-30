@@ -31,7 +31,7 @@ for windows:
 create an account in [spotify](https://www.spotify.com/) and get an API key.
 
 create a file named `.env` in that file enter:
-`CLIENT_ID = <your_client_id>`
+`CLIENT_ID = <your_client_id>`  
 `CLIENT_SECRECT = <your_client_secret>`
 
 **Run on local server:**
